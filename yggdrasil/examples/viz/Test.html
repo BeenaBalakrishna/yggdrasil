@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Testing viz (Vega Lite) </title>
+    <meta charset = "utf-8"/>
+
+    <!-- Importing Vega 5 & Vega-Lite 3 (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
+    <!-- Importing vega-embed -->
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
+
+    <style media="screen">
+          /* Add space between Vega-Embed links  */
+          .vega-actions a {
+            margin-right: 5px;
+          }
+    </style>
+  </head>
+  <body>
+    <h1> Simple X-Y plot </h1>
+    <div id="vis"> </div>
+
+    <script>
+      var v1Spec = {
+      $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+      description: 'Simple X-Y plot',
+      data: { url: 'data/something.csv'} ,
+    mark: {
+        type: 'line',
+        point: {
+          filled: false,
+          fill: 'white'
+        }
+      },
+      encoding: {
+        x: { field: 'x' , type: 'quantitative'},
+        y: { field: 'y' , type: 'quantitative'},
+        color: {value : 'black'}
+      }
+    };
+
+    vegaEmbeded('#vis', v1Spec);
+    </script>
+  </body>
+</html>
